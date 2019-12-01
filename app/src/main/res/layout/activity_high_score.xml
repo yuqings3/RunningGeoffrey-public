@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@drawable/foellinger"
+    tools:context="com.example.runninggeoffrey.HighScoreActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="230dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="100dp"
+        android:background="#97EB91"
+        android:gravity="center"
+        android:text="Your High Scores"
+        android:textColor="#877AFF"
+        android:textColorHighlight="#00ECC14B"
+        app:autoSizeTextType="uniform" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/backicon" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/customboard"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:background="@drawable/board"
+            android:ems="10"
+            android:inputType="number"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/editText2"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:background="@drawable/board"
+            android:ems="10"
+            android:inputType="number"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/editText3"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:background="@drawable/board"
+            android:ems="10"
+            android:inputType="number"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/editText4"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/board"
+            android:ems="10"
+            android:inputType="number"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/editText5"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@drawable/board"
+            android:ems="10"
+            android:inputType="number"
+            android:text="0" />
+
+    </LinearLayout>
+</RelativeLayout>
