@@ -11,12 +11,13 @@
 
     <ImageView
         android:id="@+id/iv_note_boy"
-        android:layout_width="64dp"
-        android:layout_height="61dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_above="@+id/rv_road"
         android:layout_centerInParent="true"
-        app:srcCompat="@drawable/geoffrey"
-        android:visibility="visible" />
+        android:layout_marginBottom="6dp"
+        android:visibility="visible"
+        app:srcCompat="@drawable/geoffrey" />
 
     <TextView
         android:id="@+id/score"
@@ -33,5 +34,5 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_alignParentBottom="true"
-        android:background="#00BFA5"></androidx.recyclerview.widget.RecyclerView>
+        android:background="#00BFA5" />
 </RelativeLayout>

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import com.example.runninggeoffrey.R;
 import com.example.runninggeoffrey.Utils.Ui;
 
+import static android.graphics.Color.parseColor;
+
 /**
  * Created           :Herve on 2017/2/22.
  *
@@ -45,7 +47,7 @@ public class RoadAdapter extends RecyclerView.Adapter<RoadAdapter.RoadViewHolder
 
         if (position == 0) {
             holder.itemView.setTag("B");
-            holder.itemView.setBackgroundColor(Color.BLACK);
+            holder.itemView.setBackgroundColor(0XFF00BFA5);
             marginLayoutParams.width = Ui.dp2px(mContext, (float) (150));
         } else {
             int random = (int) (Math.random() * 100);
@@ -55,7 +57,7 @@ public class RoadAdapter extends RecyclerView.Adapter<RoadAdapter.RoadViewHolder
                 marginLayoutParams.width = Ui.dp2px(mContext, (float) (30 + Math.random() * 50));
             } else {
                 holder.itemView.setTag("B");
-                holder.itemView.setBackgroundColor(Color.BLACK);
+                holder.itemView.setBackgroundColor(0XFF00BFA5);
                 marginLayoutParams.width = Ui.dp2px(mContext, (float) (50 + Math.random() * 30));
             }
         }
