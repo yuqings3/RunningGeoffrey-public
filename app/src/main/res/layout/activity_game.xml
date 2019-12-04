@@ -11,27 +11,27 @@
 
     <ImageView
         android:id="@+id/iv_note_boy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="61dp"
         android:layout_above="@+id/rv_road"
         android:layout_centerInParent="true"
-        android:src="@drawable/geoffrey"
+        app:srcCompat="@drawable/geoffrey"
         android:visibility="visible" />
 
     <TextView
         android:id="@+id/score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="score"
-        app:autoSizeMinTextSize="100dp" />
+        android:layout_width="172dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="casual"
+        android:text="score:"
+        android:textSize="25dp"
+        app:autoSizeMinTextSize="200dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_road"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_alignParentBottom="true"
-        android:background="#00BFA5"
-        android:outlineSpotShadowColor="@android:color/background_dark"
-        android:visibility="visible" />
-
+        android:background="#00BFA5"></androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>

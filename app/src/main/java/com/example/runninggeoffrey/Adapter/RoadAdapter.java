@@ -2,18 +2,27 @@ package com.example.runninggeoffrey.Adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 
 import com.example.runninggeoffrey.R;
 import com.example.runninggeoffrey.Utils.Ui;
 
-import java.util.ArrayList;
-
+/**
+ * Created           :Herve on 2017/2/22.
+ *
+ * @ Author          :Herve
+ * @ e-mail          :lijianyou.herve@gmail.com
+ * @ LastEdit        :2017/2/22
+ * @ projectName     :MagicNote
+ * @ version
+ */
 public class RoadAdapter extends RecyclerView.Adapter<RoadAdapter.RoadViewHolder> {
+
     private ArrayList<Integer> data;
     private Context mContext;
 

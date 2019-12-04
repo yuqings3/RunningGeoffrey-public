@@ -98,7 +98,6 @@ public class MediaRecorderDemo {
      */
     private int BASE = 1;
     private int SPACE = 100;// 间隔取样时间
-
     private void updateMicStatus() {
         if (mMediaRecorder != null) {
             double ratio = (double)mMediaRecorder.getMaxAmplitude() /BASE;

@@ -1,9 +1,10 @@
 package com.example.runninggeoffrey.Utils;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
+
+import androidx.appcompat.app.AlertDialog;
 
 public class DialogUtils {
     /**

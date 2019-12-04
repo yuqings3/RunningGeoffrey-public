@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.runninggeoffrey.Listener.VolumeListener;
 
+@SuppressWarnings("WeakerAccess")
 public class AudioRecordDemo {
 
     private static final String TAG = "AudioRecord";
