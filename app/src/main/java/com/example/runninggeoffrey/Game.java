@@ -3,6 +3,7 @@ package com.example.runninggeoffrey;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -15,10 +16,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import com.example.runninggeoffrey.Adapter.RoadAdapter;
+
+import org.w3c.dom.Text;
 
 public class Game extends AppCompatActivity {
 
@@ -154,17 +159,17 @@ public class Game extends AppCompatActivity {
         start = true;
     }
 
-    public void showDialog(final Context ctx, final String titleName, final String message, final String highscoreButtonText, final String restartButtonText, final String cancleButtonText,
+    public void showDialog(final Context ctx, final String titleName, final String message, final String highscoreButtonText, final String restartButtonText, final String cancelButtonText,
                                   boolean isShowCancelButton) {
         try {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(ctx);
+            AlertDialog.Builder dialog = new AlertDialog.Builder(ctx, R.style.AlertDialog);
             dialog.setTitle(titleName).setMessage(message);
             dialog.setPositiveButton(highscoreButtonText, new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(ctx, HighScoreActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  
                     ctx.startActivity(intent);
                     isShowMessage = false;
                     rvRoad.scrollToPosition(0);
@@ -181,7 +186,7 @@ public class Game extends AppCompatActivity {
                 }
             });
             if (isShowCancelButton) {
-                dialog.setNegativeButton(cancleButtonText, new DialogInterface.OnClickListener() {
+                dialog.setNegativeButton(cancelButtonText, new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
