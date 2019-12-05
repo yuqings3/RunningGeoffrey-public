@@ -2,8 +2,10 @@ package com.example.runninggeoffrey;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,8 +19,6 @@ import android.widget.RelativeLayout;
 import java.util.ArrayList;
 
 import com.example.runninggeoffrey.Adapter.RoadAdapter;
-import com.example.runninggeoffrey.Listener.VolumeListener;
-import com.example.runninggeoffrey.Utils.DialogUtils;
 
 public class Game extends AppCompatActivity {
 
@@ -91,7 +91,7 @@ public class Game extends AppCompatActivity {
             if (isShowMessage) {
                 return;
             }
-            if (volumeValue > 40) {
+            if (volumeValue > 60) {
                 if (!start) {
                     start();
                 }
@@ -121,13 +121,7 @@ public class Game extends AppCompatActivity {
                                     public void run() {
                                         stop();
                                         isShowMessage = true;
-                                        DialogUtils.showDialog(mContext, "你已死亡！", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                isShowMessage = false;
-                                                rvRoad.scrollToPosition(0);
-                                            }
-                                        });
+                                        showDialog(mContext, "Oof!", "Geoff just falls down to a pit on his way to Foellinger", "high score", "restart",  "home", true);
                                     }
                                 });
                             }
@@ -150,7 +144,7 @@ public class Game extends AppCompatActivity {
     private Runnable goon = new Runnable() {
         @Override
         public void run() {
-            rvRoad.scrollBy((int) rvRoad.getX() + 1, (int) rvRoad.getY());
+            rvRoad.scrollBy((int) rvRoad.getX() + 3, (int) rvRoad.getY());
             start();
         }
     };
@@ -158,5 +152,54 @@ public class Game extends AppCompatActivity {
     private void start() {
         rvRoad.postDelayed(goon, 2);
         start = true;
+    }
+
+    public void showDialog(final Context ctx, final String titleName, final String message, final String highscoreButtonText, final String restartButtonText, final String cancleButtonText,
+                                  boolean isShowCancelButton) {
+        try {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(ctx);
+            dialog.setTitle(titleName).setMessage(message);
+            dialog.setPositiveButton(highscoreButtonText, new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(ctx, HighScoreActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    ctx.startActivity(intent);
+                    isShowMessage = false;
+                    rvRoad.scrollToPosition(0);
+                }
+            });
+            dialog.setNeutralButton(restartButtonText, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(ctx, Game.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    ctx.startActivity(intent);
+                    isShowMessage = false;
+                    rvRoad.scrollToPosition(0);
+                }
+            });
+            if (isShowCancelButton) {
+                dialog.setNegativeButton(cancleButtonText, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(ctx, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        ctx.startActivity(intent);
+                        isShowMessage = false;
+                        rvRoad.scrollToPosition(0);
+
+                    }
+                });
+            }
+
+            dialog.setCancelable(false);
+            AlertDialog toShow = dialog.create();
+            toShow.show();
+        } catch (Exception e) {
+            Log.e("DialogUtils", e.toString());
+        }
     }
 }
