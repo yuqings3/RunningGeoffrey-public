@@ -46,8 +46,8 @@ public class RoadAdapter extends RecyclerView.Adapter<RoadAdapter.RoadViewHolder
 
         if (position == 0) {
             holder.itemView.setTag("B");
-            holder.itemView.setBackgroundColor(0XFF00BFA5);
-            marginLayoutParams.width = Ui.dp2px(mContext, (float) (150));
+            holder.itemView.setBackgroundColor(0XFF64F8DC);
+            marginLayoutParams.width = Ui.dp2px(mContext, (float) (350));
         } else {
             int random = (int) (Math.random() * 100);
             if (random > 60) {

@@ -3,7 +3,7 @@ package com.example.runninggeoffrey;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
+
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -16,14 +16,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import com.example.runninggeoffrey.Adapter.RoadAdapter;
 
-import org.w3c.dom.Text;
+import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_IDLE;
+
 
 public class Game extends AppCompatActivity {
 
@@ -76,9 +75,8 @@ public class Game extends AppCompatActivity {
         audioRecordDemo.getNoiseLevel();
 
     }
-
+    private boolean scroll = true;
     private void initListener() {
-
         rvRoad.setOnTouchListener((View v, MotionEvent event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -93,10 +91,35 @@ public class Game extends AppCompatActivity {
             return true;
         });
         audioRecordDemo.setVolumeListener((double volumeValue) -> {
+            if (scroll) {
+                rvRoad.scrollBy((int) rvRoad.getX() + 4, 0);
+            }
             if (isShowMessage) {
                 return;
             }
-            if (volumeValue > 60) {
+            ivNoteBoy.setTranslationY(0);
+            if (rvRoad.getLayoutManager() instanceof LinearLayoutManager) {
+                int firstPosition = ((LinearLayoutManager) rvRoad.getLayoutManager()).findFirstVisibleItemPosition();
+                int lastPosition = ((LinearLayoutManager) rvRoad.getLayoutManager()).findLastVisibleItemPosition();
+                int count = lastPosition - firstPosition;
+                for (int i = 0; i < count; i++) {
+                    View view = rvRoad.getChildAt(i);
+                    if (view.getTag().equals("W")) {
+                        if (view.getX() < (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 2 / 3) && view.getX() + view.getWidth() > (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 1 / 3)) {
+                            scroll = false;
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    stop();
+                                    isShowMessage = true;
+                                    showDialog(mContext, "Oof!", "Geoff just falls down to a pit on his way to Foellinger", "high score", "restart",  "home", true);
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+            if (volumeValue > 59) {
                 if (!start) {
                     start();
                 }
@@ -107,32 +130,6 @@ public class Game extends AppCompatActivity {
                 Log.i(TAG, "volumeChangeListener: tranY=" + tranY);
 
                 ivNoteBoy.setTranslationY(-tranY);
-            } else {
-                if (!start) {
-                    return;
-                }
-                stop();
-                ivNoteBoy.setTranslationY(0);
-                if (rvRoad.getLayoutManager() instanceof LinearLayoutManager) {
-                    int firstPosition = ((LinearLayoutManager) rvRoad.getLayoutManager()).findFirstVisibleItemPosition();
-                    int lastPosition = ((LinearLayoutManager) rvRoad.getLayoutManager()).findLastVisibleItemPosition();
-                    int count = lastPosition - firstPosition;
-                    for (int i = 0; i < count; i++) {
-                        View view = rvRoad.getChildAt(i);
-                        if (view.getTag().equals("W")) {
-                            if (view.getX() < (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 2 / 3) && view.getX() + view.getWidth() > (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 1 / 3)) {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        stop();
-                                        isShowMessage = true;
-                                        showDialog(mContext, "Oof!", "Geoff just falls down to a pit on his way to Foellinger", "high score", "restart",  "home", true);
-                                    }
-                                });
-                            }
-                        }
-                    }
-                }
             }
         });
 
@@ -142,20 +139,19 @@ public class Game extends AppCompatActivity {
         rvRoad.removeCallbacks(goon);
         start = false;
     }
-
     private boolean start = false;
     private boolean isShowMessage = false;
 
     private Runnable goon = new Runnable() {
         @Override
         public void run() {
-            rvRoad.scrollBy((int) rvRoad.getX() + 3, (int) rvRoad.getY());
+            rvRoad.scrollBy((int) rvRoad.getX(), (int) rvRoad.getY());
             start();
         }
     };
 
     private void start() {
-        rvRoad.postDelayed(goon, 2);
+        rvRoad.postDelayed(goon, 4);
         start = true;
     }
 
