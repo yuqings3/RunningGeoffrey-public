@@ -13,15 +13,7 @@ import com.example.runninggeoffrey.R;
 import com.example.runninggeoffrey.Utils.Ui;
 
 
-/**
- * Created           :Herve on 2017/2/22.
- *
- * @ Author          :Herve
- * @ e-mail          :lijianyou.herve@gmail.com
- * @ LastEdit        :2017/2/22
- * @ projectName     :MagicNote
- * @ version
- */
+
 public class RoadAdapter extends RecyclerView.Adapter<RoadAdapter.RoadViewHolder> {
 
     private ArrayList<Integer> data;
@@ -36,7 +28,6 @@ public class RoadAdapter extends RecyclerView.Adapter<RoadAdapter.RoadViewHolder
     public RoadViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_layout, parent, false);
-
         return new RoadViewHolder(view);
     }
 

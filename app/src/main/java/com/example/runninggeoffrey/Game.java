@@ -21,9 +21,6 @@ import java.util.ArrayList;
 
 import com.example.runninggeoffrey.Adapter.RoadAdapter;
 
-import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_IDLE;
-
-
 public class Game extends AppCompatActivity {
 
     private RelativeLayout activityGame;
@@ -90,9 +87,10 @@ public class Game extends AppCompatActivity {
             }
             return true;
         });
+
         audioRecordDemo.setVolumeListener((double volumeValue) -> {
             if (scroll) {
-                rvRoad.scrollBy((int) rvRoad.getX() + 5, 0);
+                rvRoad.scrollBy((int) rvRoad.getX() + 8, 0);
             }
             if (isShowMessage) {
                 return;
@@ -105,7 +103,7 @@ public class Game extends AppCompatActivity {
                 for (int i = 0; i < count; i++) {
                     View view = rvRoad.getChildAt(i);
                     if (view.getTag().equals("W")) {
-                        if (view.getX() < (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 2 / 3) && view.getX() + view.getWidth() > (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 1 / 3)) {
+                        if (view.getX() < (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 2 / 3) && view.getX() + view.getWidth() > (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 1 / 3) && ivNoteBoy.getTranslationY() == 0)  {
                             scroll = false;
                             runOnUiThread(new Runnable() {
                                 @Override
