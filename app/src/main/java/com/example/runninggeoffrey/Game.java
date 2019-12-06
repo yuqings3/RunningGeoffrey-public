@@ -59,9 +59,7 @@ public class Game extends AppCompatActivity {
             data.add(i);
         }
         roadAdapter = new RoadAdapter(data, mContext);
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false);
-
         rvRoad.setLayoutManager(layoutManager);
         rvRoad.setAdapter(roadAdapter);
     }
@@ -70,7 +68,6 @@ public class Game extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         audioRecordDemo.getNoiseLevel();
-
     }
     private boolean scroll = true;
     private void initListener() {
@@ -90,44 +87,40 @@ public class Game extends AppCompatActivity {
 
         audioRecordDemo.setVolumeListener((double volumeValue) -> {
             if (scroll) {
-                rvRoad.scrollBy((int) rvRoad.getX() + 8, 0);
+                rvRoad.scrollBy((int) rvRoad.getX() + 8 , 0);
             }
             if (isShowMessage) {
                 return;
             }
             ivNoteBoy.setTranslationY(0);
-            if (rvRoad.getLayoutManager() instanceof LinearLayoutManager) {
-                int firstPosition = ((LinearLayoutManager) rvRoad.getLayoutManager()).findFirstVisibleItemPosition();
-                int lastPosition = ((LinearLayoutManager) rvRoad.getLayoutManager()).findLastVisibleItemPosition();
-                int count = lastPosition - firstPosition;
-                for (int i = 0; i < count; i++) {
-                    View view = rvRoad.getChildAt(i);
-                    if (view.getTag().equals("W")) {
-                        if (view.getX() < (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 2 / 3) && view.getX() + view.getWidth() > (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 1 / 3) && ivNoteBoy.getTranslationY() == 0)  {
-                            scroll = false;
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    stop();
-                                    isShowMessage = true;
-                                    showDialog(mContext, "Oof!", "Geoff just falls down to a pit on his way to Foellinger", "high score", "restart",  "home", true);
-                                }
-                            });
-                        }
-                    }
-                }
-            }
-            if (volumeValue > 59) {
+            float tranY = 0;
+            if (volumeValue > 57) {
                 if (!start) {
                     start();
                 }
-                float test = (float) (Math.sqrt(volumeValue - 30) * 10);
-                Log.i(TAG, "volumeChangeListener: test=" + test);
-                float tranY = test + (float) volumeValue;
                 tranY = (float) (volumeValue * volumeValue / (2 * 10));
                 Log.i(TAG, "volumeChangeListener: tranY=" + tranY);
 
                 ivNoteBoy.setTranslationY(-tranY);
+            }
+            int firstPosition = ((LinearLayoutManager) rvRoad.getLayoutManager()).findFirstVisibleItemPosition();
+            int lastPosition = ((LinearLayoutManager) rvRoad.getLayoutManager()).findLastVisibleItemPosition();
+            int count = lastPosition - firstPosition;
+            for (int i = 0; i < count; i++) {
+                View view = rvRoad.getChildAt(i);
+                if (view.getTag().equals("W")) {
+                    if (view.getX() < (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 2 / 3) && view.getX() + view.getWidth() > (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 1 / 3) && tranY == 0)  {
+                        scroll = false;
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                stop();
+                                isShowMessage = true;
+                                showDialog(mContext, "Oof!", "Geoff just falls down to a pit on his way to Foellinger", "high score", "restart",  "home", true);
+                            }
+                        });
+                    }
+                }
             }
         });
 
