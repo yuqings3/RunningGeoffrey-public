@@ -92,7 +92,7 @@ public class Game extends AppCompatActivity {
         });
         audioRecordDemo.setVolumeListener((double volumeValue) -> {
             if (scroll) {
-                rvRoad.scrollBy((int) rvRoad.getX() + 4, 0);
+                rvRoad.scrollBy((int) rvRoad.getX() + 5, 0);
             }
             if (isShowMessage) {
                 return;
