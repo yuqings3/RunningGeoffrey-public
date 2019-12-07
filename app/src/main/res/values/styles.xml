@@ -11,6 +11,7 @@
         <item name="android:windowBackground">@drawable/youdied</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">25sp</item>
+        <item name="android:fontFamily">casual</item>
         <item name="android:textColorPrimary">@android:color/white</item>
 
     </style>
