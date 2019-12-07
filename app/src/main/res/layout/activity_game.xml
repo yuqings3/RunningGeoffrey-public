@@ -25,7 +25,6 @@
         android:layout_height="58dp"
         android:layout_marginStart="20dp"
         android:fontFamily="casual"
-        android:text="score:"
         android:textSize="25dp"
         app:autoSizeMinTextSize="200dp" />
 

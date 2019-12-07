@@ -16,8 +16,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.example.runninggeoffrey.Adapter.RoadAdapter;
 
@@ -33,6 +36,8 @@ public class Game extends AppCompatActivity {
     public String TAG = getClass().getSimpleName();
 
     private Context mContext;
+    Timer T = new Timer();
+    int count = 0;
 
     private ArrayList<Integer> data;
 
@@ -50,6 +55,22 @@ public class Game extends AppCompatActivity {
 
         initData();
         initListener();
+
+        T.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        TextView score = findViewById(R.id.score);
+                        score.setText("Score=" + count);
+                        count++;
+                    }
+                });
+            }
+        }, 60, 60);
 
     }
 
@@ -69,7 +90,9 @@ public class Game extends AppCompatActivity {
         super.onResume();
         audioRecordDemo.getNoiseLevel();
     }
+
     private boolean scroll = true;
+
     private void initListener() {
         rvRoad.setOnTouchListener((View v, MotionEvent event) -> {
             switch (event.getAction()) {
@@ -87,7 +110,7 @@ public class Game extends AppCompatActivity {
 
         audioRecordDemo.setVolumeListener((double volumeValue) -> {
             if (scroll) {
-                rvRoad.scrollBy((int) rvRoad.getX() + 16 , 0);
+                rvRoad.scrollBy((int) rvRoad.getX() + 16, 0);
             }
             if (isShowMessage) {
                 return;
@@ -109,14 +132,15 @@ public class Game extends AppCompatActivity {
             for (int i = 0; i < count; i++) {
                 View view = rvRoad.getChildAt(i);
                 if (view.getTag().equals("W")) {
-                    if (view.getX() < (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 2 / 3) && view.getX() + view.getWidth() > (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 1 / 3) && tranY == 0)  {
+                    if (view.getX() < (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 2 / 3) && view.getX() + view.getWidth() > (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 1 / 3) && tranY == 0) {
                         scroll = false;
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                T.cancel();
                                 stop();
                                 isShowMessage = true;
-                                showDialog(mContext, "Oof!😱", "︎Geoff just falls down to a pit on his way to Foellinger", "-->high score", "-->restart",  "-->home", true);
+                                showDialog(mContext, "Oof!😱", "︎Geoff just falls down to a pit on his way to Foellinger", "-->high score", "-->restart", "-->home", true);
                             }
                         });
                     }
@@ -130,6 +154,7 @@ public class Game extends AppCompatActivity {
         rvRoad.removeCallbacks(goon);
         start = false;
     }
+
     private boolean start = false;
     private boolean isShowMessage = false;
 
@@ -147,7 +172,7 @@ public class Game extends AppCompatActivity {
     }
 
     public void showDialog(final Context ctx, final String titleName, final String message, final String highscoreButtonText, final String restartButtonText, final String cancelButtonText,
-                                  boolean isShowCancelButton) {
+                           boolean isShowCancelButton) {
         try {
             AlertDialog.Builder dialog = new AlertDialog.Builder(ctx, R.style.AlertDialog);
             dialog.setTitle(titleName).setMessage(message);
@@ -156,7 +181,7 @@ public class Game extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(ctx, HighScoreActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     ctx.startActivity(intent);
                     isShowMessage = false;
                     rvRoad.scrollToPosition(0);
@@ -194,4 +219,5 @@ public class Game extends AppCompatActivity {
             Log.e("DialogUtils", e.toString());
         }
     }
+
 }
