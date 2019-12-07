@@ -10,7 +10,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.runninggeoffrey.Game;
+import java.util.Arrays;
+
 public class HighScoreActivity extends AppCompatActivity {
+    private String[] savedscores;
     MediaPlayer media;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +42,7 @@ public class HighScoreActivity extends AppCompatActivity {
         SharedPreferences highScores = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
         TextView first = findViewById(R.id.first);
         int finalscore = highScores.getInt("first",0) - 1;
-        first.setText(finalscore + "");
-        /**TextView first = findViewById(R.id.first);
-        TextView second = findViewById(R.id.second);
-        TextView third = findViewById(R.id.thrid);
-        TextView forth = findViewById(R.id.forth);
-        TextView fifth = findViewById(R.id.fifth);
-        first.setText(String.valueOf(highScores.getInt("first",0)));
-        second.setText(String.valueOf(highScores.getInt("second", 0)));
-        third.setText(String.valueOf(highScores.getInt("third", 0)));
-        forth.setText(String.valueOf(highScores.getInt("forth", 0)));
-        fifth.setText(String.valueOf(highScores.getInt("fifth", 0)));**/
+        first.setText("🏆" + finalscore + "🏆");
+
     }
 }
