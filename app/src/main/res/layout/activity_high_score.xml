@@ -45,49 +45,39 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/editText"
+            android:id="@+id/first"
             android:layout_width="match_parent"
             android:layout_height="110dp"
             android:background="@drawable/board"
-            android:ems="10"
-            android:inputType="number"
-            android:text="0" />
+            android:ems="10" />
 
         <TextView
-            android:id="@+id/editText2"
+            android:id="@+id/second"
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:background="@drawable/board"
-            android:ems="10"
-            android:inputType="number"
-            android:text="0" />
+            android:ems="10"/>
 
         <TextView
-            android:id="@+id/editText3"
+            android:id="@+id/thrid"
             android:layout_width="match_parent"
             android:layout_height="66dp"
             android:background="@drawable/board"
-            android:ems="10"
-            android:inputType="number"
-            android:text="0" />
+            android:ems="10"/>
 
         <TextView
-            android:id="@+id/editText4"
+            android:id="@+id/forth"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/board"
-            android:ems="10"
-            android:inputType="number"
-            android:text="0" />
+            android:ems="10"/>
 
         <TextView
-            android:id="@+id/editText5"
+            android:id="@+id/fifth"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:background="@drawable/board"
-            android:ems="10"
-            android:inputType="number"
-            android:text="0" />
+            android:ems="10"/>
 
     </LinearLayout>
 </RelativeLayout>

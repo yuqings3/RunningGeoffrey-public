@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RunningGeoffrey</string>
+    <string name="HIGH_SCORE">HighScore</string>
 </resources>

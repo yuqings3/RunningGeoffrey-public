@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -19,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -134,10 +136,11 @@ public class Game extends AppCompatActivity {
                 if (view.getTag().equals("W")) {
                     if (view.getX() < (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 2 / 3) && view.getX() + view.getWidth() > (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 1 / 3) && tranY == 0) {
                         scroll = false;
+                        T.cancel();
+                        store(count);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                T.cancel();
                                 stop();
                                 isShowMessage = true;
                                 showDialog(mContext, "Oof!😱", "︎Geoff just falls down to a pit on his way to Foellinger", "-->high score", "-->restart", "-->home", true);
@@ -219,5 +222,37 @@ public class Game extends AppCompatActivity {
             Log.e("DialogUtils", e.toString());
         }
     }
-
+    public void store (int score) {
+        SharedPreferences highScore = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
+        int[] scores = new int[5];
+        int[] newScores = new int [6];
+        scores[0] = highScore.getInt("first", 0);
+        scores[1] = highScore.getInt("second", 0);
+        scores[2] = highScore.getInt("third", 0);
+        scores[3] = highScore.getInt("forth", 0);
+        scores[4] = highScore.getInt("fifth", 0);
+        for (int i = 0; i < scores.length; i++) {
+            newScores[i] = scores[i];
+        }
+        newScores[5] = score;
+        Arrays.sort(newScores);
+        for (int i = 0; i < scores.length; i++) {
+            scores[i] = newScores[i];
+        }
+        SharedPreferences.Editor editor1 = highScore.edit();
+        editor1.putInt("first", scores[4]);
+        SharedPreferences.Editor editor2 = highScore.edit();
+        editor2.putInt("second", scores[3]);
+        SharedPreferences.Editor editor3 = highScore.edit();
+        editor3.putInt("third", scores[2]);
+        SharedPreferences.Editor editor4 = highScore.edit();
+        editor4.putInt("forth", scores[1]);
+        SharedPreferences.Editor editor5 = highScore.edit();
+        editor5.putInt("fifth", scores[0]);
+        editor1.commit();
+        editor2.commit();
+        editor3.commit();
+        editor4.commit();
+        editor5.commit();
+    }
 }
