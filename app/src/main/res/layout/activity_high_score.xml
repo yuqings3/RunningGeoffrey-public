@@ -11,19 +11,19 @@
 
     <TextView
         android:id="@+id/annoucement"
-        android:layout_width="wrap_content"
+        android:layout_width="352dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="350dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40sp"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginBottom="100dp"
         android:background="@drawable/board"
 
+        android:fontFamily="casual"
         android:text="From Deisigners: In this little game, we mean no harm to anyone. Plus: remember to turn on your microphone! Good luck!"
         android:textColor="#877AFF"
-        android:fontFamily="casual"
         android:textColorHighlight="#00ECC14B"
         android:textSize="15sp" />
 
@@ -54,16 +54,15 @@
 
     <TextView
         android:id="@+id/first"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_width="335dp"
+        android:layout_height="88dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="245dp"
         android:layout_marginRight="40dp"
         android:background="@drawable/board"
-        android:textSize="60sp"
-        android:textColor="#877AFF"
         android:fontFamily="casual"
         android:gravity="center"
-        />
+        android:textColor="#877AFF"
+        android:textSize="60sp" />
 
 </RelativeLayout>
