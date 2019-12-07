@@ -87,7 +87,7 @@ public class Game extends AppCompatActivity {
 
         audioRecordDemo.setVolumeListener((double volumeValue) -> {
             if (scroll) {
-                rvRoad.scrollBy((int) rvRoad.getX() + 8 , 0);
+                rvRoad.scrollBy((int) rvRoad.getX() + 16 , 0);
             }
             if (isShowMessage) {
                 return;
@@ -116,7 +116,7 @@ public class Game extends AppCompatActivity {
                             public void run() {
                                 stop();
                                 isShowMessage = true;
-                                showDialog(mContext, "Oof!", "Geoff just falls down to a pit on his way to Foellinger", "high score", "restart",  "home", true);
+                                showDialog(mContext, "Oof!😱", "︎Geoff just falls down to a pit on his way to Foellinger", "-->high score", "-->restart",  "-->home", true);
                             }
                         });
                     }
