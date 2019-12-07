@@ -39,7 +39,7 @@ public class Game extends AppCompatActivity {
 
     private Context mContext;
     Timer T = new Timer();
-    int count = 0;
+    int count1 = 0;
 
     private ArrayList<Integer> data;
 
@@ -67,8 +67,8 @@ public class Game extends AppCompatActivity {
                     public void run()
                     {
                         TextView score = findViewById(R.id.score);
-                        score.setText("Score=" + count);
-                        count++;
+                        score.setText("Score=" + count1);
+                        count1++;
                     }
                 });
             }
@@ -137,7 +137,11 @@ public class Game extends AppCompatActivity {
                     if (view.getX() < (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 2 / 3) && view.getX() + view.getWidth() > (ivNoteBoy.getX() + ivNoteBoy.getWidth() * 1 / 3) && tranY == 0) {
                         scroll = false;
                         T.cancel();
-                        store(count);
+                        SharedPreferences highScore = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
+                        if (highScore.getInt("first", 0) <= count1) {
+                            highScore.edit().putInt("first", count1).apply();
+                        }
+
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -222,9 +226,10 @@ public class Game extends AppCompatActivity {
             Log.e("DialogUtils", e.toString());
         }
     }
-    public void store (int score) {
+    /**public void store (int score) {
         SharedPreferences highScore = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
-        int[] scores = new int[5];
+
+        /**int[] scores = new int[5];
         int[] newScores = new int [6];
         scores[0] = highScore.getInt("first", 0);
         scores[1] = highScore.getInt("second", 0);
@@ -254,5 +259,6 @@ public class Game extends AppCompatActivity {
         editor3.commit();
         editor4.commit();
         editor5.commit();
-    }
+
+    }**/
 }

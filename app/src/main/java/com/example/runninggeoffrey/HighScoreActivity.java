@@ -37,6 +37,9 @@ public class HighScoreActivity extends AppCompatActivity {
     public void showScores() {
         SharedPreferences highScores = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
         TextView first = findViewById(R.id.first);
+        int finalscore = highScores.getInt("first",0) - 1;
+        first.setText(finalscore + "");
+        /**TextView first = findViewById(R.id.first);
         TextView second = findViewById(R.id.second);
         TextView third = findViewById(R.id.thrid);
         TextView forth = findViewById(R.id.forth);
@@ -45,6 +48,6 @@ public class HighScoreActivity extends AppCompatActivity {
         second.setText(String.valueOf(highScores.getInt("second", 0)));
         third.setText(String.valueOf(highScores.getInt("third", 0)));
         forth.setText(String.valueOf(highScores.getInt("forth", 0)));
-        fifth.setText(String.valueOf(highScores.getInt("fifth", 0)));
+        fifth.setText(String.valueOf(highScores.getInt("fifth", 0)));**/
     }
 }

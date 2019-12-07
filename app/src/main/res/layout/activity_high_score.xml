@@ -21,7 +21,7 @@
         android:layout_marginBottom="100dp"
         android:background="#97EB91"
         android:gravity="center"
-        android:text="Your High Scores"
+        android:text="Your High Score"
         android:textColor="#877AFF"
         android:textColorHighlight="#00ECC14B"
         app:autoSizeTextType="uniform" />
@@ -32,52 +32,17 @@
         android:layout_height="60dp"
         android:background="@drawable/backicon" />
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/first"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
+        android:layout_height="110dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="250dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginBottom="80dp"
-        android:background="@drawable/customboard"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/first"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:background="@drawable/board"
-            android:ems="10" />
-
-        <TextView
-            android:id="@+id/second"
-            android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:background="@drawable/board"
-            android:ems="10"/>
-
-        <TextView
-            android:id="@+id/thrid"
-            android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:background="@drawable/board"
-            android:ems="10"/>
-
-        <TextView
-            android:id="@+id/forth"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@drawable/board"
-            android:ems="10"/>
-
-        <TextView
-            android:id="@+id/fifth"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:background="@drawable/board"
-            android:ems="10"/>
-
-    </LinearLayout>
+        android:layout_marginRight="40dp"
+        android:background="@drawable/board"
+        android:textSize="65sp"
+        android:textColor="#877AFF"
+        android:fontFamily="casual"
+        android:gravity="center"/>
 </RelativeLayout>
