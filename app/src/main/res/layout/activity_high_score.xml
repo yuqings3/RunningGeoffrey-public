@@ -10,6 +10,24 @@
     tools:context="com.example.runninggeoffrey.HighScoreActivity">
 
     <TextView
+        android:id="@+id/annoucement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/board"
+
+        android:text="From Deisigners: In this little game, we mean no harm to anyone. Plus: remember to turn on your microphone! Good luck!"
+        android:textColor="#877AFF"
+        android:fontFamily="casual"
+        android:textColorHighlight="#00ECC14B"
+        android:textSize="15sp" />
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="230dp"
         android:layout_height="120dp"
@@ -19,7 +37,8 @@
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:layout_marginBottom="100dp"
-        android:background="#97EB91"
+        android:background="#C9FDC6"
+        android:fontFamily="casual"
         android:gravity="center"
         android:text="Your Highest Score"
         android:textColor="#877AFF"
