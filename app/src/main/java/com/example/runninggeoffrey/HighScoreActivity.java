@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.runninggeoffrey.Game;
-import java.util.Arrays;
 
 public class HighScoreActivity extends AppCompatActivity {
     private String[] savedscores;

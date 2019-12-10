@@ -1,4 +1,4 @@
-package com.example.runninggeoffrey;
+package com.example.runninggeoffrey.Utils;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;
@@ -55,7 +55,6 @@ public class AudioRecordDemo {
                     if (volumeListener != null) {
                         volumeListener.volumeChangeListener(volume);
                     }
-                    // 大概一秒十次
                     synchronized (mLock) {
                         try {
                             mLock.wait(100);

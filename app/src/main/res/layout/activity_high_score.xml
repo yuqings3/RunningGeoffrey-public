@@ -22,7 +22,7 @@
         android:background="@drawable/board"
 
         android:fontFamily="casual"
-        android:text="From Deisigners: In this little game, we mean no harm to anyone. Plus: remember to turn on your microphone! Good luck!"
+        android:text="From Deisigners: In this little game, we mean no offence. Plus: remember to turn on your microphone! Good luck!"
         android:textColor="#877AFF"
         android:textColorHighlight="#00ECC14B"
         android:textSize="15sp" />
